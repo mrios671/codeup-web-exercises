@@ -2,17 +2,17 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Inline JS</title>
+        <title>Inline JS Exercise</title>
     </head>
     <body>
 
-    <!-- External JS example -->
-        <script src="js/external.js">
-
-        </script>
-    <!-- Internal JS example -->
             <script>
-                console.log("Hello- this is a log message from a script tag internally placed on the html");
+                console.log("Hello from inline JavaScript");
+                //This shows up in the console within the browser
+            </script>
+
+            <script src="js/external.js">
+                //This links the HTML to the external JS file -- as well as shows up in the console within the browser
             </script>
 
     </body>
