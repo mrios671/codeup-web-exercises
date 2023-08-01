@@ -258,7 +258,7 @@ if (luckyNumber === 0) {
 
 //THE FOLLLOWING IS WHAT WE WENT OVER IN THE EXERCISE REVIEW DURING THE END OF CLASS
 
-/*
+
 
 function calculateTotal(lucky, price) {
     if (lucky === 0) {
@@ -279,7 +279,7 @@ function calculateTotal(lucky, price) {
 console.log(calculateTotal(4, 33));
 console.log(calculateTotal(3, 100));
 console.log(calculateTotal(2, 53));
-*/
+
 
 /**
  * TODO:
@@ -352,7 +352,7 @@ if (numberQuestion > 0) {
 
 //THE FOLLOWING IS WHAT WE WENT OVER DURING EXERCISE REVIEW
 
-let userConfirm= confirm("Would you like to enter a number?");
+/*let userConfirm= confirm("Would you like to enter a number?");
 
 if(userConfirm) {
     let userNumber= prompt("Please enter a number.");
@@ -371,7 +371,7 @@ if(userConfirm) {
             evenOrOddMessage = "Your number is odd!";
         }
          */
-
+/*
         alert(`Your number plus 100 is: ${parsedNumber + 100}`);
 
         let positiveNegativeMessage = (parsedNumber >= 0) ? "Your number is positive!" : "Your number is negative!";
@@ -380,4 +380,4 @@ if(userConfirm) {
     } else {
         alert("Hey, that's not a number!");
     }
-}
+}*/
