@@ -20,6 +20,17 @@ alert(helloMessage);
 
 */
 
+// the following is what we went over during the review
+/*
+function sayHello(name){
+    let nameInput = name;
+    //return `Hello, ${nameInput}!`;
+    return "Hello, " + nameInput + "!";
+ }
+ let helloMessage = sayHello("Nani");
+ console.log(helloMessage);
+ */
+
 
 /**
  * TODO:check
