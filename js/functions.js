@@ -110,6 +110,29 @@ alert("You should tip $" + (calculateTip(tipPercentage, totalBill)));
 console.log(calculateTip(tipPercentage , totalBill));
 */
 
+//Below is what we went over during the exercise review
+
+//declared function calculateTip
+//two param === decimalTip, totalBill
+// return deciamlTip + totalBill
+
+/*
+function calculateTip(decimalTip, totalBill) {
+
+    return decimalTip + totalBill;
+}
+console.log(calculateTip(.20, 20));
+
+let tipPercent = Number(prompt("What percent would you like to tip?")):
+
+let tipDeci = tipPercent/100;
+
+let billTotal = Number(prompt("How much was your bill today?"));
+
+alert(`${calculateTip(tipDeci, billTotal} is your tip amount for today`);
+*/
+
+
 /**
  * TODO:
  * [ ] Create a function named 'calculateTip' to calculate a tip on a bill at a
