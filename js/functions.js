@@ -178,8 +178,20 @@ let discountPercent = prompt ("What percentage is the discount for that item?")
 alert("Your total after the discount is applied will be $" + parseFloat(applyDiscount(originalPrice, discountPercent)).toFixed(2));
 console.log(parseFloat(applyDiscount(originalPrice, discountPercent)).toFixed(2));
 
+// Below is what we ewnt over during class review
 
+/*
+let discountPercentRandom = Math.random().toFixed(2);
 
+function applyDiscount(originalPrice, discountPercent){
+
+    return originalPrice - (originalPrice * discountPercent);
+
+}
+console.log(`${discountPercentRandom} is the decimal we are passing inot the applyDiscount function`);
+console.log(applyDiscount(100, discountPercentRandom));
+
+ */
 
 
 
