@@ -60,6 +60,24 @@ function isTwo (number) {
 console.log(isTwo(random));
 */
 
+// The following is what we went over during the review:
+
+/*
+
+// declared function - isTwo
+//one Param === number
+// return if number === 2
+
+function isTwo (number) {
+    return number ===2;
+}
+
+console.log("the random number is " + random);
+//`The random number is ${random}`
+console.log(isTwo(random));
+
+ */
+
 /**
  * TODO:
  * Create a function called 'isTwo' that takes a number as a parameter.
