@@ -23,42 +23,41 @@
 //in loop, generate a random number that is between 1 and 5 that represents how much each person sold
 // keep going through the loop until you have no cones
 
-var allCones = Math.floor(Math.random() * 50) + 50;
-console.log("I need to sell " + allCones + " cones.")
-
-let randomNumber;
-// let conesLeft;
-
-do {
-    randomNumber= Math.floor(Math.random() * 5) + 1;
-
-    if(randomNumber > allCones){
-        console.log("Cannot sell you " + randomNumber + " cones, I only have " + allCones);
-    } else {
-        console.log(randomNumber + " cones sold");
-        allCones = allCones- randomNumber;
-        console.log(allCones)
-    }
-
-}while(allCones >0)
-
-console.log("Yay! I sold everything!");
+// var allCones = Math.floor(Math.random() * 50) + 50;
+// console.log("I need to sell " + allCones + " cones.")
+//
+// let randomNumber;
+// // let conesLeft;
+//
+// do {
+//     randomNumber= Math.floor(Math.random() * 5) + 1;
+//
+//     if(randomNumber > allCones){
+//         console.log("Cannot sell you " + randomNumber + " cones, I only have " + allCones);
+//     } else {
+//         console.log(randomNumber + " cones sold");
+//         allCones = allCones- randomNumber;
+//         console.log(allCones)
+//     }
+//
+// }while(allCones >0)
+//
+// console.log("Yay! I sold everything!");
 
 
 // {
 //     console.log("I have " + (allCones - randomNumber) + " cones left")
 // }
-
+//
 // let allCones = Math.floor(Math.random() * 50) + 50;
-// Math.floor(Math.random() * 5) + 1;
+//
 // console.log("I need to sell " + allCones + " cones.")
 //
-//     let i = randomNumber
-//     let conesLeft;
+//     let randomNumber;
+//
 //
 // do {
-//     console.log(randomNumber + " cones sold...");
-//     // conesLeft = allCones - randomNumber;
+//     randomNumber= .floor(Math.random() * 5) + 1;
 //
 // }while(i > allCones)
 //
