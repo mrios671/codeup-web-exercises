@@ -11,38 +11,59 @@
 //     i++;
 // }
 
-let input = 2;
-while(input <= 65536) {
-    console.log(input);
-    input*=2;
-}
-
-
-//the following is what I got based off an internet search(not chat gpt)
-
-
-// let total =2;
-// let raisedPower= 0
-// function numberToPower(number, power){
-//     raisedPower= 16;
-//
-//     while(power < 0){
-//         total *= number;
-//         power--;
-//     }
-//     return total;
+// let input = 2;
+// while(input <= 65536) {
+//     console.log(input);
+//     input*=2;
 // }
-//
-// console.log(numberToPower);
 
 //Do While Loop
 
-//generate a random number between 50 and 100
-//random number equals the amt of cones to sell before loop
-//(inside loop) generate another random number between 1 and 5 (equals the amount of cones each customer bought
-//us a do-while loop to show the amt of cones sold to each person.
+// generate random number between 50 and 100
+//in loop, generate a random number that is between 1 and 5 that represents how much each person sold
+// keep going through the loop until you have no cones
 
-// do{
-//     let allCones = Math.floor(Math.random() * 50) + 50;
-//     console.log(allCones);
-// }while()
+var allCones = Math.floor(Math.random() * 50) + 50;
+console.log("I need to sell " + allCones + " cones.")
+
+let randomNumber;
+// let conesLeft;
+
+do {
+    randomNumber= Math.floor(Math.random() * 5) + 1;
+
+    if(randomNumber > allCones){
+        console.log("Cannot sell you " + randomNumber + " cones, I only have " + allCones);
+    } else {
+        console.log(randomNumber + " cones sold");
+        allCones = allCones- randomNumber;
+        console.log(allCones)
+    }
+
+}while(allCones >0)
+
+console.log("Yay! I sold everything!");
+
+
+// {
+//     console.log("I have " + (allCones - randomNumber) + " cones left")
+// }
+
+// let allCones = Math.floor(Math.random() * 50) + 50;
+// Math.floor(Math.random() * 5) + 1;
+// console.log("I need to sell " + allCones + " cones.")
+//
+//     let i = randomNumber
+//     let conesLeft;
+//
+// do {
+//     console.log(randomNumber + " cones sold...");
+//     // conesLeft = allCones - randomNumber;
+//
+// }while(i > allCones)
+//
+//
+//
+// //console.log("Cannot sell you " + randomNumber + " cones " + " I only have " +  )
+// console.log("Yay! I sold them all!")
+
