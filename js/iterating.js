@@ -65,4 +65,18 @@
     console.log("second = "+ numArray[1]);
     console.log("last = "+ numArray[4]);
 
+    //Below is what I did for funsies ^-^
+
+    let familyName = ["Jireh", "Levi", "Matua", "Magnolia"]
+
+    console.log(familyName.length);
+
+    console.log(familyName[3])
+    console.log(familyName)
+    console.log(familyName.reverse())
+
+    let familyNameString = familyName.join()
+    console.log(familyNameString);
+    console.log(familyName)
+
 })();
