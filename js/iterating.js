@@ -61,22 +61,40 @@
 
     let numArray = [1, 2, 3, 4, 5]
 
-    console.log("first = "+ numArray[0]);
-    console.log("second = "+ numArray[1]);
-    console.log("last = "+ numArray[4]);
+    // console.log("first = "+ numArray[0]);
+    // console.log("second = "+ numArray[1]);
+    // console.log("last = "+ numArray[4]);
+
+    function first(array){
+        return array[0];
+    }
+
+    console.log(first(numArray));
+
+    function second(array){
+        return array[1];
+    }
+
+    console.log(second(numArray));
+
+    function last(array){
+        return array[array.length -1]
+    }
+
+    console.log(last(numArray));
 
     //Below is what I did for funsies ^-^
 
-    let familyName = ["Jireh", "Levi", "Matua", "Magnolia"]
-
-    console.log(familyName.length);
-
-    console.log(familyName[3])
-    console.log(familyName)
-    console.log(familyName.reverse())
-
-    let familyNameString = familyName.join()
-    console.log(familyNameString);
-    console.log(familyName)
+    // let familyName = ["Jireh", "Levi", "Matua", "Magnolia"]
+    //
+    // console.log(familyName.length);
+    //
+    // console.log(familyName[3])
+    // console.log(familyName)
+    // console.log(familyName.reverse())
+    //
+    // let familyNameString = familyName.join()
+    // console.log(familyNameString);
+    // console.log(familyName)
 
 })();
