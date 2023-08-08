@@ -229,15 +229,21 @@ Books.forEach(function (val, i){
     console.log(`Book # ${i + 1} \n Title : ${Books[i].title} \n Author : ${Books[i].author.firstName} ${Books[i].author.lastName}`)
     })
 
-function showBookInfo(object){
-    let info = {
-        object: object
-    }
-    return info;
+function showBookInfo(bookObject){
+    let object = {
+        bookObject : createBook
+    };
+    return object;
 }
 
-let bookInfo = showBookInfo(createBook)
-    console.log(bookInfo);
+let object1 = showBookInfo(Book1);
+let object2 = showBookInfo(Book2);
+let object3 = showBookInfo(Book3);
+let object4 = showBookInfo(Book4);
+let object5 = showBookInfo(Book5);
+
+let objects = [object1, object2, object3, object4, object5]
+    console.log(objects);
 
     // function createBook(books) {
     //     for (let i = 0; i < books.length; i++) {
