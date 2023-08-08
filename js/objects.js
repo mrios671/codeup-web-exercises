@@ -39,33 +39,75 @@
      * more than $200. If a shopper spends more than $200, they get a 12%
      * discount. Write a JS program, using conditionals, that logs to the
      * browser, how much Ryan, Cameron and George need to pay. We know that
-     * Cameron bought $180, Ryan $250 and George $320. Your program will have to
+     * Cameron bought $180, Ryan $250 and George $320.Your program will have to
      * display a line with the name of the person, the amount before the
      * discount, the discount, if any, and the amount after the discount.
      *
      * Uncomment the lines below to create an array of objects where each object
      * represents one shopper. Use a foreach loop to iterate through the array,
      * and console.log the relevant messages for each person
+     *
      */
 
-    //
-    // let shopperDiscount = {};
-    // let amount= {};
-    //
-    // if (amount > 200){
-    //     shopperDiscount = .12
-    //     return amount * shopperDiscount;
-    // }else{
-    //     return "You do not qualify fo rhe discount."
+    // if they spend more than $200 they get a 12% discount
+    // use conditions logging how much each person needs to pay
+    //we know what they spent
+        // need to display a line with each person's name, amount before discount, how much they got off their purchase, and the amount after the discount.
+        //use a for each loop to iterate through the array and log relevant messages
+
+
+    let shopper1 = {};
+        shopper1.name = "Cameron";
+        shopper1.amount = 180;
+
+    let shopper2 = {};
+        shopper2.name = "Ryan";
+        shopper2.amount = 250;
+
+    let shopper3 = {};
+        shopper3.name = "George";
+        shopper3.amount = 320;
+
+
+    // if (shopper2.amount === 250) {
+    //     console.log(`This shopper's name is; ${shopper2.name}`);
+    //     console.log(`Before discount= $${shopper2.amount}`);
+    //     let discount = (shopper2.amount * .12);
+    //     console.log(`You get $${discount} off your order`);
+    //     console.log(`After the discount is applied, your total is ${shopper2.amount - discount}`);
+    // } else if (shopper3.amount === 320) {
+    //     console.log(`This shopper's name is; ${shopper3.name}`);
+    //     console.log(`Before discount= $${shopper3.amount}`);
+    //     let discount = (shopper3.amount * .12);
+    //     console.log(`You get $${discount} off your order`);
+    //     console.log(`After the discount is applied, your total is ${shopper3.amount - discount}`);
+    // } else {
+    //     console.log(`This shopper's name is; ${shopper1.name}`);
+    //     console.log(`You do not get a discount today.`);
+    //     console.log(`Your total is ${shopper1.amount}`);
     // }
     //
-    //
-    let shoppers = [
-        {name: 'Cameron', amount: 180},
-        {name: 'Ryan', amount: 250},
-        {name: 'George', amount: 320}
-    ];
-    console.log(shoppers[2].amount);
+    let shoppers = [shopper1, shopper2, shopper3]
+
+    for (let i = 0; i < shoppers.length; i++) {
+
+        if (shoppers[i].amount > 200) {
+            let discount = (shoppers[i]. amount * .12)
+            console.log(`Shopper's name : ${shoppers[i].name} \n Before discount = ${shoppers[i].amount} \n Discount is $${discount} \n Your total is = $${shoppers[i].amount - discount}`);
+
+        } else {
+            console.log(`Shopper's name : ${shoppers[i].name} \n You do not get a discount today, Your total is : $${shoppers[i].amount}`);
+        }
+    }
+
+    // let shoppers = [
+    //     {name: 'Cameron', amount: 180},
+    //     {name: 'Ryan', amount: 250},
+    //     {name: 'George', amount: 320}
+    // ];
+
+
+    //console.log(shoppers[2].amount);
 
     /** TODO:
      * Create an array of objects that represent books and store it in a
@@ -112,7 +154,14 @@
     let books = [book1, book2, book3, book4, book5];
     console.log(books);
 
+    books.forEach(function (val, i){
+        console.log(`Book # ${i + 1} \n Title : ${books[i].title} \n Author : ${books[i].author.firstName} ${books[i].author.lastName}`)
+    })
 
+    // for (let i = 0; i < books.length; i++) {
+    //
+    //     console.log(``)
+    // }
 
     /**
      * TODO:
