@@ -92,12 +92,24 @@
     book2.author.lastName = "Thai";
 
     let book3 = {};
-    book3.title = "Banyan Moon";
+    book3.title = "Forest of Stolen Girls";
     book3.author = {};
-    book3.author.firstName = "Thao";
-    book3.author.lastName = "Thai";
+    book3.author.firstName = "June";
+    book3.author.lastName = "Hur";
 
-    let books = [book1, book2];
+    let book4 = {};
+    book4.title = "The Chronicles of Narnia: Prince Caspian";
+    book4.author = {};
+    book4.author.firstName = "C.S.";
+    book4.author.lastName = "Lewis";
+
+    let book5 = {};
+    book5.title = "Iron Widow";
+    book5.author = {};
+    book5.author.firstName = "Xiran";
+    book5.author.lastName = "Zhao";
+
+    let books = [book1, book2, book3, book4, book5];
     console.log(books);
 
 
