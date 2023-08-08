@@ -121,6 +121,8 @@
      * > console.log(books[0].author.firstName) // "Douglas"
      * > console.log(books[0].author.lastName) // "Adams"
      */
+
+
     let book1 = {};
     book1.title = "One Italian Summer";
     book1.author = {};
@@ -192,12 +194,77 @@
      * Bonus:
      * - Create a function named `createBook` that accepts a title and author
      *   name and returns a book object with the properties described
-     *   previously. Refactor your code that creates the books array to instead
+     *   previously.
+     *   Refactor your code that creates the books array to instead
      *   use your function.
      * - Create a function named `showBookInfo` that accepts a book object and
      *   outputs the information described above. Refactor your loop to use your
      *   `showBookInfo` function.
      */
+// I used a youTube video for guidance. (JavaScript array of objects by Bro Code)
+
+    console.log("---------- Bonus Question------------");
+
+    function createBook (title, authorFirstName, authorLastName){
+       let Book = {
+           title : title,
+           author : {
+               firstName: authorFirstName,
+               lastName : authorLastName
+           }
+       };
+       return Book;
+    }
+
+let Book1 = createBook("One Italian Summer", "Rebecca", "Serle");
+let Book2 = createBook("Banyan Moon", "Thao", "Thai");
+let Book3 = createBook("Forest of Stolen Girls", "June", "Hur");
+let Book4 = createBook("The Chronicles of Narnia: Prince Caspian", "C.S.", "Lewis");
+let Book5 = createBook("iron Widow", "Xiran", "Zhao");
+
+let Books = [Book1, Book2, Book3, Book4, Book5]
+    console.log(Books);
+
+Books.forEach(function (val, i){
+    console.log(`Book # ${i + 1} \n Title : ${Books[i].title} \n Author : ${Books[i].author.firstName} ${Books[i].author.lastName}`)
+    })
+
+function showBookInfo(object){
+    let info = {
+        object: object
+    }
+    return info;
+}
+
+let bookInfo = showBookInfo(createBook)
+    console.log(bookInfo);
+
+    // function createBook(books) {
+    //     for (let i = 0; i < books.length; i++) {
+    //         if (books[i].title) {
+    //             return books[i];
+    //         }
+    //
+    //         if(books[i].author.firstName && books[i].author.lastName){
+    //             return books[i];
+    //         }
+    //     }
+    //     console.log(createBook(books));
+    // }
+    // console.log(createBook(books));
+
+
+//     function createBook (){
+//         if(books.title && (books.author.firstName + books.lastName)=== books){
+//         console.log(books.push)
+//     }
+//     }
+//
+// console.log(createBook)
+
+
+
+
 
     //Below is what we went over during lecture
 
