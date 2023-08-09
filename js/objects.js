@@ -60,57 +60,69 @@
     //we know what they spent
         // need to display a line with each person's name, amount before discount, how much they got off their purchase, and the amount after the discount.
         //use a for each loop to iterate through the array and log relevant messages
-
-
-    let shopper1 = {};
-        shopper1.name = "Cameron";
-        shopper1.amount = 180;
-
-    let shopper2 = {};
-        shopper2.name = "Ryan";
-        shopper2.amount = 250;
-
-    let shopper3 = {};
-        shopper3.name = "George";
-        shopper3.amount = 320;
-
-
-    // if (shopper2.amount === 250) {
-    //     console.log(`This shopper's name is; ${shopper2.name}`);
-    //     console.log(`Before discount= $${shopper2.amount}`);
-    //     let discount = (shopper2.amount * .12);
-    //     console.log(`You get $${discount} off your order`);
-    //     console.log(`After the discount is applied, your total is ${shopper2.amount - discount}`);
-    // } else if (shopper3.amount === 320) {
-    //     console.log(`This shopper's name is; ${shopper3.name}`);
-    //     console.log(`Before discount= $${shopper3.amount}`);
-    //     let discount = (shopper3.amount * .12);
-    //     console.log(`You get $${discount} off your order`);
-    //     console.log(`After the discount is applied, your total is ${shopper3.amount - discount}`);
-    // } else {
-    //     console.log(`This shopper's name is; ${shopper1.name}`);
-    //     console.log(`You do not get a discount today.`);
-    //     console.log(`Your total is ${shopper1.amount}`);
-    // }
+// if (shopper2.amount === 250) {
+        //     console.log(`This shopper's name is; ${shopper2.name}`);
+        //     console.log(`Before discount= $${shopper2.amount}`);
+        //     let discount = (shopper2.amount * .12);
+        //     console.log(`You get $${discount} off your order`);
+        //     console.log(`After the discount is applied, your total is ${shopper2.amount - discount}`);
+        // } else if (shopper3.amount === 320) {
+        //     console.log(`This shopper's name is; ${shopper3.name}`);
+        //     console.log(`Before discount= $${shopper3.amount}`);
+        //     let discount = (shopper3.amount * .12);
+        //     console.log(`You get $${discount} off your order`);
+        //     console.log(`After the discount is applied, your total is ${shopper3.amount - discount}`);
+        // } else {
+        //     console.log(`This shopper's name is; ${shopper1.name}`);
+        //     console.log(`You do not get a discount today.`);
+        //     console.log(`Your total is ${shopper1.amount}`);
+        // }
+        //
     //
-    let shoppers = [shopper1, shopper2, shopper3]
+    // let shopper1 = {};
+    //     shopper1.name = "Cameron";
+    //     shopper1.amount = 180;
+    //
+    // let shopper2 = {};
+    //     shopper2.name = "Ryan";
+    //     shopper2.amount = 250;
+    //
+    // let shopper3 = {};
+    //     shopper3.name = "George";
+    //     shopper3.amount = 320;
+    //
+    //
+    // let shoppers = [shopper1, shopper2, shopper3]
+let shoppers = [
+        {name: 'Cameron', amount: 180},
+        {name: 'Ryan', amount: 250},
+        {name: 'George', amount: 320}
+    ];
 
-    for (let i = 0; i < shoppers.length; i++) {
-
-        if (shoppers[i].amount > 200) {
-            let discount = (shoppers[i]. amount * .12)
-            console.log(`Shopper's name : ${shoppers[i].name} \n Before discount = ${shoppers[i].amount} \n Discount is $${discount} \n Your total is = $${shoppers[i].amount - discount}`);
+    //for (let i = 0; i < shoppers.length; i++) {
+shoppers.forEach(function (element){
+        if (element.amount > 200) {
+            let discount = (element. amount * .12)
+            console.log(`Shopper's name : ${element.name} \n Before discount = ${element.amount} \n Discount is $${discount} \n Your total is = $${element.amount - discount}`);
 
         } else {
-            console.log(`Shopper's name : ${shoppers[i].name} \n You do not get a discount today, Your total is : $${shoppers[i].amount}`);
+            console.log(`Shopper's name : ${element.name} \n You do not get a discount today, Your total is : $${element.amount}`);
         }
-    }
+    });
 
-    // let shoppers = [
-    //     {name: 'Cameron', amount: 180},
-    //     {name: 'Ryan', amount: 250},
-    //     {name: 'George', amount: 320}
-    // ];
+    // Below is what we went over during the review
+
+
+    //
+    // function qualifiesFirDiscount(element){
+    //
+    //     if(element.amount > 200){
+    //         return `${element.name} is shopping with us today- they have purchased ${element.amount} which qualifies for our discount offer. ${element.name} now has to pay ${element.amount- (element.amount * 12)}`;
+    //     } else {
+    //         return `${elemq.name} is here and purchsed ${element.amount}- that does not qualify for our discount today`;
+    //     }
+    // }
+
 
 
     //console.log(shoppers[2].amount);
