@@ -119,7 +119,7 @@ shoppers.forEach(function (element){
     //     if(element.amount > 200){
     //         return `${element.name} is shopping with us today- they have purchased ${element.amount} which qualifies for our discount offer. ${element.name} now has to pay ${element.amount- (element.amount * 12)}`;
     //     } else {
-    //         return `${elemq.name} is here and purchsed ${element.amount}- that does not qualify for our discount today`;
+    //         return `${element.name} is here and purchased ${element.amount}- that does not qualify for our discount today`;
     //     }
     // }
 
@@ -182,6 +182,24 @@ shoppers.forEach(function (element){
     //
     //     console.log(``)
     // }
+
+    //Below is what we went over during the review
+    /*
+
+    ** another way to go about making a nested object.
+
+    let book1 = {
+        title : "One Italian Summer";
+        author = {
+            firstName = "Rebecca";
+            lastName = "Serle";
+        }
+    };
+
+
+
+     */
+
 
     /**
      * TODO:
