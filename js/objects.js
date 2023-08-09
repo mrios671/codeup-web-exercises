@@ -252,34 +252,26 @@ shoppers.forEach(function (element){
        return Book;
     }
 
-let Book1 = createBook("One Italian Summer", "Rebecca", "Serle");
-let Book2 = createBook("Banyan Moon", "Thao", "Thai");
-let Book3 = createBook("Forest of Stolen Girls", "June", "Hur");
-let Book4 = createBook("The Chronicles of Narnia: Prince Caspian", "C.S.", "Lewis");
-let Book5 = createBook("iron Widow", "Xiran", "Zhao");
 
-let Books = [Book1, Book2, Book3, Book4, Book5]
-    console.log(Books);
+    let booksArray = [];
 
-Books.forEach(function (val, i){
-    console.log(`Book # ${i + 1} \n Title : ${Books[i].title} \n Author : ${Books[i].author.firstName} ${Books[i].author.lastName}`)
-    })
+    booksArray.push(createBook("title 1", "dude", "mcdude"));
 
-function showBookInfo(bookObject){
-    let object = {
-        bookObject : createBook
-    };
-    return object;
-}
-
-let object1 = showBookInfo(Book1);
-let object2 = showBookInfo(Book2);
-let object3 = showBookInfo(Book3);
-let object4 = showBookInfo(Book4);
-let object5 = showBookInfo(Book5);
-
-let objects = [object1, object2, object3, object4, object5]
-    console.log(objects);
+// function showBookInfo(bookObject){
+//     let object = {
+//         bookObject : createBook
+//     };
+//     return object;
+// }
+//
+// let object1 = showBookInfo(Book1);
+// let object2 = showBookInfo(Book2);
+// let object3 = showBookInfo(Book3);
+// let object4 = showBookInfo(Book4);
+// let object5 = showBookInfo(Book5);
+//
+// let objects = [object1, object2, object3, object4, object5]
+//     console.log(objects);
 
     // function createBook(books) {
     //     for (let i = 0; i < books.length; i++) {
@@ -307,7 +299,7 @@ let objects = [object1, object2, object3, object4, object5]
 
 
 
-
+/**
     //Below is what we went over during lecture
 
         //facts about my first car
@@ -348,4 +340,5 @@ let objects = [object1, object2, object3, object4, object5]
 //
 //     console.log(myGarage[0].make + " " + myGarage[0].model);
 // }
+ */
 })();
