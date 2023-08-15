@@ -8,10 +8,22 @@
  * Ii. Add validation to make sure the argument passed to the function is a string datatype only
  */
 
-let string = ""
-function logUser(name = string){
-   return `${name} has logged in for the day`;
-}
-string = "ken2cool"
-console.log(logUser(string));
+// let string = ""
+// function logUser(name = string){
+//    return `${name} has logged in for the day`;
+// }
+// string = "ken2cool"
+// console.log(logUser(string));
 
+
+// let name = ""
+// function logUser(name){
+//     let userName = prompt("Please enter a user Name")
+//     if (userName !== "string"){
+//         alert ("that is not a valid username")
+//     } else {
+//         return name.toString();
+//     }
+// }
+//
+// console.log(logUser());
