@@ -8,6 +8,18 @@
  * Ii. Add validation to make sure the argument passed to the function is a string datatype only
  */
 
+//Try #3 / Class Review
+//create a function named logUser
+//accepts a string as an argument
+//needs to return the message 'stringArgument has logged in for the day'
+//need to make sure that the argument passed to the function is a string datatype only
+
+function logUser(){
+
+}
+
+
+//Try #1
 // let string = ""
 // function logUser(name = string){
 //    return `${name} has logged in for the day`;
@@ -15,7 +27,7 @@
 // string = "ken2cool"
 // console.log(logUser(string));
 
-
+//Try #2
 // let name = ""
 // function logUser(name){
 //     let userName = prompt("Please enter a user Name")
