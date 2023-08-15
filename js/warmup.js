@@ -14,10 +14,13 @@
 //needs to return the message 'stringArgument has logged in for the day'
 //need to make sure that the argument passed to the function is a string datatype only
 
-function logUser(){
-
+function logUser(string){
+    if(typeof string !== "string"){
+        return false;
+    }
+    return `${string} has logged in for the day`
 }
-
+console.log(logUser("ken2cool"));
 
 //Try #1
 // let string = ""
