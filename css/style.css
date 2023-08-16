@@ -3,5 +3,8 @@ h1 {
 }
 
 .fancy-header {
-    color: #b56cec;
+    color: #0f8000;
+    margin: 50px auto;
+    width: 500px;
+    padding: 10px;
 }
