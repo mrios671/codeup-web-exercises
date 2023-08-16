@@ -60,27 +60,60 @@
  *         Iii. Refactor your user object to have a nested userProfile object property - this nested property should have a userProfileUrl property with a string value mocking a link to an image. The other property should be a userLocation property with a string value mocking a CityName, StateName location the user could be from. Finally, add a property called numLikes with a number value indicating the users received ‘likes’ in our hypothetical application.
  */
 
-let userObject = {
-    username : "ken2cool",
-    email: "ken2cool@yahoo.com",
-    userProfile: {
-        userProfileUrl: "http://indiavisa.co.in/",
-        userLocation: "San Antonio, Tx",
-        numLikes: 123
-    }
+// let userObject = {
+//     username : "ken2cool",
+//     email: "ken2cool@yahoo.com",
+//     userProfile: {
+//         userProfileUrl: "http://indiavisa.co.in/",
+//         userLocation: "San Antonio, Tx",
+//         numLikes: 123
+//     }
+// }
+// console.log(userObject.username);
+// console.log(userObject.email);
+//
+// function logUser(string){
+//
+//     if(typeof string !== userObject.username){
+//         return false;
+//     }
+//     return `${userObject.username} with an email ${userObject.email} has logged in for the day`
+// }
+// console.log(logUser());
+//
+// userObject.userRoles = ["admin", "moderator", "buyer","seller"]
+// console.log(userObject);
+
+//Warmup review below
+
+
+let userObject ={
+    username: "ken2cool",
+    email: "ken2cool@yahoo.com"
 }
 console.log(userObject.username);
 console.log(userObject.email);
 
-function logUser(string){
-
-    if(typeof string !== userObject.username){
+function logUser(object){
+    //needed to change string to object for readability and include the email in the conditionals statemnt.
+    if(typeof object.username !== "string" || typeof object.email !== "string"){
         return false;
     }
     return `${userObject.username} with an email ${userObject.email} has logged in for the day`
 }
-console.log(logUser());
+// needed to log userObject within the logUser function to print the desired message
+console.log(logUser(userObject));
 
 userObject.userRoles = ["admin", "moderator", "buyer","seller"]
-console.log(userObject);
 
+console.log(userObject.userRoles);
+// I could have made the nested userProfile object with a dot notation like I did above.
+userObject.userProfile ={
+    userProfileUrl: "http://indiavisa.co.in/",
+    userLocation: "San Antonio, Tx",
+    numLikes: 123
+}
+
+console.log(userObject.userProfile);
+console.log(userObject.userProfile.userLocation);
+console.log(userObject.userRoles[2]);
