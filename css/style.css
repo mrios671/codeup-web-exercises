@@ -1,4 +1,7 @@
-html * {
+* {
+    /*margin: 0;*/
+    /*padding:0;*/
+    /*box-sizing: border-box;*/
     font-family: 'Roboto Mono', monospace;
     font-weight: bolder;
 }
@@ -60,7 +63,7 @@ a:active{
 }
 #container {
     background-image: url("../img/pexels-eva-bronzini-7598077.jpg");
-    background-size: cover;
+    background-size: contain;
     background-position: center;
     background-repeat: repeat;
     margin: 20px;
