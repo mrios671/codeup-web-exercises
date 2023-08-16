@@ -14,13 +14,13 @@
 //needs to return the message 'stringArgument has logged in for the day'
 //need to make sure that the argument passed to the function is a string datatype only
 
-function logUser(string){
-    if(typeof string !== "string"){
-        return false;
-    }
-    return `${string} has logged in for the day`
-}
-console.log(logUser("ken2cool"));
+// function logUser(string){
+//     if(typeof string !== "string"){
+//         return false;
+//     }
+//     return `${string} has logged in for the day`
+// }
+// console.log(logUser("ken2cool"));
 
 //Try #1
 // let string = ""
@@ -62,7 +62,25 @@ console.log(logUser("ken2cool"));
 
 let userObject = {
     username : "ken2cool",
-    email: "ken2cool@yahoo.com"
+    email: "ken2cool@yahoo.com",
+    userProfile: {
+        userProfileUrl: "http://indiavisa.co.in/",
+        userLocation: "San Antonio, Tx",
+        numLikes: 123
+    }
 }
 console.log(userObject.username);
 console.log(userObject.email);
+
+function logUser(string){
+
+    if(typeof string !== userObject.username){
+        return false;
+    }
+    return `${userObject.username} with an email ${userObject.email} has logged in for the day`
+}
+console.log(logUser());
+
+userObject.userRoles = ["admin", "moderator", "buyer","seller"]
+console.log(userObject);
+
