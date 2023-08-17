@@ -34,8 +34,8 @@ h2, h3 {
     padding: 1em;
     margin: 0 auto;
     display: flex;
-    flex-flow: column;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: space-evenly;
     /* enter needed declarations here */
 }
 
