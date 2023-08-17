@@ -1,42 +1,132 @@
-@import "resets.css";
-
-:root {
-  --clr-dark: #0f172a;
-  --clr-light: #f1f5f9;
-  --clr-primary: #e11d48;
-  --clr-primary-light: #fb7185;
+* {
+  box-sizing: border-box;
 }
 
 body {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
+  margin: 0;
+  padding: 0;
+  background: lightskyblue;
+  font-family: Chalkboard, sans-serif;
+}
+
+h1 {text-align: center;}
+
+h2, h3 {
+  padding: 0;
+  margin: 0;
 }
 
 .container {
+  margin: 0 auto;
   width: 80%;
-  border: 10px solid var(--clr-dark);
-  position: relative;
-}
-.container:before {
-  content: ".container";
-  position: absolute;
-  top: -40px;
-  left: 0;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--clr-dark);
 }
 
-.item {
-  min-width: 150px;
-  min-height: 150px;
-  background-color: var(--clr-primary-light);
+.green-box {
+  background: green;
+  height: 1em;
+  width: 2em;
+}
+
+.border {border: 2px solid black;}
+
+.card {
+  width: 400px;
+  height: 800px;
+  background: white;
   padding: 1em;
-  font-weight: 700;
-  color: var(--clr-light);
-  font-size: 0.8rem;
-  border: 10px solid var(--clr-primary);
-  border-radius: 10px;
+  margin: 0 auto;
+  display: flex;
+
+  /* enter needed declarations here */
+}
+
+section {
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+  /* enter needed declarations here */
+}
+
+section:nth-of-type(1) {
+  height: 3em;
+  background: lightgreen;
+  /* enter needed declarations here */
+}
+section:nth-of-type(1) div:last-child {
+  /* enter needed declarations here */
+}
+
+.purple-box {
+  background: fuchsia;
+  width: 3em;
+  height: 1em;
+}
+
+.purple-box:nth-of-type(1) {
+  /* enter needed declarations here */
+}
+
+.purple-box:nth-of-type(2) {
+  /* enter needed declarations here */
+}
+
+.blue-box {
+  width: 100%;
+  background: blue;
+  height: 10em;
+}
+
+section:nth-of-type(3) {
+  /* enter needed declarations here */
+}
+
+section:nth-of-type(3) h3 {
+  /* enter needed declarations here */
+
+}
+
+.orange-circle {
+  background: orange;
+  width: 2em;
+  height: 2em;
+  border-radius: 1em;
+  margin: .5em;
+}
+
+.large-brown-box {
+  height: 5em;
+  width: 5em;
+  background: brown;
+
+  /* enter needed declarations here */
+}
+
+.large-brown-box:nth-of-type(2) {
+  margin: 0 1em;
+}
+
+section:nth-of-type(5) {
+  /* enter needed declarations here */
+}
+
+.yellow-box {
+  background: yellow;
+  width: 2em;
+  height: 2em;
+}
+
+section:nth-of-type(6) {
+  background: coral;
+  height: 14em;
+  /* enter needed declarations here */
+}
+
+.grey-box {
+  background: grey;
+  width: 3em;
+  height: 3em;
+}
+
+.grey-box:nth-of-type(odd) {
+  height: 4em;
 }
