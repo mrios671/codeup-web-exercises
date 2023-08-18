@@ -1,0 +1,12 @@
+@import "resets.css";
+@import "layout.css";
+
+.column.side-nav {
+    flex: 0 0 300px;
+}
+ul {
+    list-style: none;
+}
+.container.hero {
+    min-height: 60vh;
+}
