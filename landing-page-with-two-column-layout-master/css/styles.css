@@ -1,4 +1,99 @@
 @import "resets.css";
 @import "css/layout.css";
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+:root {
+    color: #07043B;
+}
+
+body {
+    font-family: "Open Sans", sans-serif;
+}
+.row {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+}
+header.container {
+    padding: 40px;
+}
+h1 , h2{
+    font-family: 'Raleway', sans-serif;
+    color: inherit;
+    font-size: 40px;
+    font-weight: 700;
+}
+.container.hero {
+    min-height: 60vh;
+}
+p.hero {
+   min-width: 585px;
+    min-height: 72px;
+    padding-bottom: 25px;
+    padding-top: 15px;
+    padding-right: 60px;
+}
+ul a:link{
+    text-decoration: none;
+    color: #07043B;
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+a:visited{
+    color: inherit;
+}
+a:hover {
+    color: #110a83;
+}
+ul {
+    list-style: none;
+}
+input {
+    min-height: 45px;
+    width: 320px;
+    border: 1px solid #07043B;
+    padding-left: 21px;
+    border-radius: 3px;
+}
+input::placeholder{
+    color: #C2C2C2;
+    font-size: 14px;
+    font-weight: 400;
+}
+button {
+    flex: 200px;
+    width: 200px;
+    height: 45px;
+    color: #ffffff;
+    background-color: #2F65F8;
+    filter: drop-shadow(2px 3px 6px rgba(0, 0, 0, 0.16));
+    border-radius: 3px;
+    border-color:#2F65F8;
+}
+.container.info {
+    min-height: 60vh;
+}
+.white-space {
+
+}
+p.info.one{
+    min-height: 48px;
+    min-width: 529px;
+    padding-right: 120px;
+    padding-bottom: 16px;
+}
+p.info.two{
+    min-height: 48px;
+    min-width:529px ;
+    padding-right: 120px;
+    padding-bottom: 22px;
+}
+.container.content{
+    min-height: 60vh;
+}
+h2.py-20 {
+    min-width: 660px;
+}
 
