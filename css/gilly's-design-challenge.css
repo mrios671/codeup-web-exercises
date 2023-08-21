@@ -7,10 +7,13 @@ body {
     font-family: 'Urbanist', sans-serif;
 }
 .page-wrapper{
-    margin: 80px;
+    /*margin: 80px;*/
+    /*padding: 80px;*/
+}
+main {
     padding: 80px;
 }
-.row {
+.main.row {
     border-radius: 15px;
     max-width: 700px;
     max-height: 400px;
@@ -19,13 +22,37 @@ body {
     box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
 
 }
+p.logo{
+    font-family: inherit;
+    font-weight: 100;
+    font-size: 50px;
+    letter-spacing: 8px;
+    color: #be795c;
+    justify-content: center;
+}
+ul a:link{
+    text-decoration: none;
+    color: #be795c;
+    font-family: 'Urbanist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 100;
+    line-height: normal;
+}
+a:visited{
+    color: #be795c;
+}
+a:hover {
+    color: #5d3a2a;
+}
+ul {
+    list-style: none;
+}
 h1.logo{
     font-family: inherit;
     font-weight: 100;
     font-size: 20px;
     letter-spacing: 8px;
-    /*position: relative;*/
-    /*top: -75px;*/
     color: #be795c;
 }
 h2.product {
@@ -33,20 +60,22 @@ h2.product {
     font-weight: 500;
     font-size: 40px;
     color:#5d3a2a;
-    /*position: relative;*/
-    /*top: -65px;*/
 }
 p {
     font-size: 12px;
     color: #5d3a2a;
+}
+p span{
+    text-decoration: line-through;
+    font-size: 20px;
+    font-weight: 300;
+    color: #be795c;
 }
 p#product{
     font-family: inherit;
     font-size: 12px;
     font-weight: 100;
     color: #be795c;
-    /*position: relative;*/
-    /*top: -65px;*/
 }
 p.price {
     font-family: 'Gluten', cursive;
@@ -62,9 +91,45 @@ button{
     flex: 200px;
     width: 200px;
     height: 45px;
-    font-size: 12px;
+    font-size: 15px;
     cursor: pointer;
     font-family: 'Urbanist', sans-serif;
+}
+.thumbnail-wrapper {
+    width: 300px;
+    aspect-ratio: 4/3;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+.thumbnail-wrapper img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: all ease 0.3s;
+}
+.thumbnail-wrapper:hover img {
+    transform: scale(1.2);
+}
+.thumbnail-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width:100%;
+    background-color: rgba(0,0,0,0.8);
+    opacity: 0;
+    transition: all ease 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+}
+
+.thumbnail-wrapper:hover .thumbnail-overlay {
+    opacity: 1;
 }
 /*img {*/
 /*    display: block;*/
