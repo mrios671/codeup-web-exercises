@@ -97,3 +97,17 @@ h2.py-20 {
     min-width: 660px;
 }
 
+@media screen and (max-width: 900px){
+    .hero .row {
+        flex-direction: column;
+    }
+    .hero .column:has(img.hero-image){
+        order: -1;
+    }
+}
+
+@media print {
+    .column:has(img.hero-image){
+        display: none;
+    }
+}
