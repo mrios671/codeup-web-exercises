@@ -8,7 +8,11 @@
     background-size: cover;
     background-image: url("../img/pizza-img.png");
 }
-.jumbotron h1 {
-    width: 100%;
-    background-color: #FFFFFF;
+h1 {
+
+    text-align: center;
+}
+.main h2 {
+    font-size: 30px;
+    font-weight: 600;
 }
