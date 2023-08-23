@@ -1,0 +1,14 @@
+.navbar-sign-up {
+    text-decoration: none;
+    color: black;
+}
+
+.jumbotron {
+    height: 346px;
+    background-size: cover;
+    background-image: url("../img/pizza-img.png");
+}
+.jumbotron h1 {
+    width: 100%;
+    background-color: #FFFFFF;
+}
