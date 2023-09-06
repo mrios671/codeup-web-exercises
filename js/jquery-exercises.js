@@ -27,3 +27,11 @@ $("h1").on("click", function (){
 $("p").on("dblclick", function(){
     $("p").css("font-size", "18px");
 })
+
+$("li").on({
+    mouseenter: function () {
+    $("li").css("color", "red");
+},
+    mouseleave: function () {
+        $("li").css("color", "black");
+    } })
