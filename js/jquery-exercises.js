@@ -1,5 +1,1 @@
-let contents = $("#header").html();
-alert(contents);
-
-contents = $("#list").html();
-alert(contents);
+$(".codeup").css("border", "1px solid red");
