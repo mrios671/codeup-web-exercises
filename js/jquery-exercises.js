@@ -1,3 +1,5 @@
-$(function (){
-    alert("The page has finished loading!")
-})
+let contents = $("#header").html();
+alert(contents);
+
+contents = $("#list").html();
+alert(contents);
