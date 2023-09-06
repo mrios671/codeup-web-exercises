@@ -23,3 +23,7 @@
 $("h1").on("click", function (){
     $("h1").css("background-color", "springgreen");
 })
+
+$("p").on("dblclick", function(){
+    $("p").css("font-size", "18px");
+})
