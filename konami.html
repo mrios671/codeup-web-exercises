@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Konami Code</title>
+</head>
+<body>
+<h1>Konami Code</h1>
+
+<div id="populate"></div>
+<div id="currentTypingCode"></div>
+<br>
+<div id="currentTypingStr"></div>
+
+<div id="test"></div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
+    "use strict";
+    var keydown = '';
+
+    $(function () {
+        //up up down down left right left right a b enter
+        let keyCodeToId = "3838404037393739666513";
+        let keyCodeInput = "";
+
+        let charToId = "help";
+        let charInput = "";
+
+        $("body").on("keydown", (e) => {
+            console.log("event object property 'originalEvent':");
+            console.log(e.originalEvent);
+            console.log("keycode: " + e.originalEvent.keyCode);
+            console.log("key: " + e.originalEvent.key);
+
+            keyCodeInput += e.originalEvent.keyCode;
+
+            charInput += e.originalEvent.key;
+            keydown += e.keyCode.toString();
+
+            if (keyCodeInput === keyCodeToId) {
+                $("body").css("background-color", "red");
+                $("#test").text("You Gained 30 Lives");
+                // alert ("you gained 30 lives!");
+                var obj = document.createElement("audio");
+                obj.src = "sound/mixkit-bonus-extra-in-a-video-game-2064.wav";
+                obj.play();
+                keyCodeInput = "";
+                charInput = "";
+            }
+            if (charInput === charToId) {
+                $("#populate").css({'background-image':'url(img/konami.png', 'background-size':'contain', 'background-repeat':'no-repeat', 'height': "200px", "width": "600px"})
+                $("#test").text("Try inputting the above example...");
+                keyCodeInput = "";
+                charInput = "";
+            }
+
+            $("#currentTypingStr").text(charInput);
+            $("#currentTypingCode").text(keyCodeInput);
+        })
+
+        $("#refresh").on("click", () => {
+            location.reload();
+
+        })
+    });
+
+</script>
+</body>
+</html>
