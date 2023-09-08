@@ -18,6 +18,7 @@
         dd {
             margin-bottom: 1em;
         }
+
         .invisible {
             visibility: hidden;
         }
@@ -79,32 +80,102 @@
     <dt>
         <a href="#" id="toggle-visibility">Toggle Visibility</a>
     </dt>
+
+    <h3>Grand Canyon</h3>
+    <ul class="national-parks">
+        <li>random fact 1</li>
+        <li>random fact 2</li>
+        <li>random fact 3</li>
+        <li>random fact 4</li>
+    </ul>
+    <h3>Everglades</h3>
+    <ul class="national-parks">
+        <li>random fact 1</li>
+        <li>random fact 2</li>
+        <li>random fact 3</li>
+        <li>random fact 4</li>
+    </ul>
+    <h3>Yosemite</h3>
+    <ul class="national-parks">
+        <li>random fact 1</li>
+        <li>random fact 2</li>
+        <li>random fact 3</li>
+        <li>random fact 4</li>
+    </ul>
+
+    <button class="highlight-last">Click Me!</button>
+
 </dl>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script>
-    "use strict";
+
 
     $(document).ready(function () {
-
-        $("dt").click(function () {
-            $(this).css("background-color", "springgreen")
-            let dd = $(this).next("dd");
-
-            if (dd.css("display") === "none") {
-                dd.css("display", "block");
-            } else {
-                dd.css("display", "none");
-            }
-        });
-        function toggleVisibility() {
-            $("dd").toggleClass("invisible");
-        }
-
-        $("#toggle-visibility").click(function (e) {
+        "use strict";
+        //=====================below is what we went over during class walkthrough
+        $("#toggle-visibility").on("click", (e)=>{
             e.preventDefault();
-            toggleVisibility();
+            $("dd").toggleClass("invisible");
         });
+
+        $("dt").on("click", (e)=>{
+            $(e.target).css("background-color", "yellow");
+        })
+
+        //  =================below is what I did
+        // $("dt").click(function () {
+        //     $(this).css("background-color", "springgreen")
+        //     let dd = $(this).next("dd");
+        //
+        //     if (dd.css("display") === "none") {
+        //         dd.css("display", "block");
+        //     } else {
+        //         dd.css("display", "none");
+        //     }
+        // });
+        //
+        // function toggleVisibility() {
+        //     $("dd").toggleClass("invisible");
+        // }
+        //
+        // $("#toggle-visibility").click(function (e) {
+        //     e.preventDefault();
+        //     toggleVisibility();
+        // });
+
+        //=============== below is what we went over during walkthrough
+
+        $(".highlight-last").on("click", ()=>{
+            $("ul").each((index, element) => {
+                $(element).children().last().css("background-color", "yellow")
+            });
+        })
+
+        $("h3").on("click", (e) => {
+            $(e.target).next().css("font-weight", "bold")
+        })
+
+        $("li").on("click", (e) => {
+            $(e.target).parent().children().first().css("color", "blue")
+        })
+
+        // ================== below is what I did
+        // $("ul").each(function (index, element) {
+        //     console.log(element);
+        //     // $(".highlight-last").click(function(e){
+        //     //     e.preventDefault();
+        //     $(".national-parks").children().last().css("background-color", "yellow");
+        // })
+        //
+        //
+        // $("h3").click(function () {
+        //     $("li").css("font-weight", "bold")
+        //  })
+        // $("li").click(function () {
+        //     $("li").parent().first().css("color", "blue")
+        // })
+
 
     });
 </script>
