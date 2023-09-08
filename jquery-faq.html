@@ -18,6 +18,9 @@
         dd {
             margin-bottom: 1em;
         }
+        .invisible {
+            visibility: hidden;
+        }
 
     </style>
 </head>
@@ -73,9 +76,9 @@
         parks, off-road driving is illegal. Where off-road driving is allowed, the National Park Service regulates it.
     </dd>
 
-<!--    <dt>-->
-<!--        <a href="#" id="toggle-visibility">Toggle Visibility</a>-->
-<!--    </dt>-->
+    <dt>
+        <a href="#" id="toggle-visibility">Toggle Visibility</a>
+    </dt>
 </dl>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -83,17 +86,9 @@
     "use strict";
 
     $(document).ready(function () {
-        // function toggleVisibility() {
-        //     $("dd").toggleClass("invisible");
-        // }
-        //
-        // $("#toggle-visibility").click(function (e) {
-        //     e.preventDefault();
-        //     toggleVisibility();
-        // });
 
         $("dt").click(function () {
-            $(this).css("background-color", "yellow")
+            $(this).css("background-color", "springgreen")
             let dd = $(this).next("dd");
 
             if (dd.css("display") === "none") {
@@ -102,6 +97,15 @@
                 dd.css("display", "none");
             }
         });
+        function toggleVisibility() {
+            $("dd").toggleClass("invisible");
+        }
+
+        $("#toggle-visibility").click(function (e) {
+            e.preventDefault();
+            toggleVisibility();
+        });
+
     });
 </script>
 
