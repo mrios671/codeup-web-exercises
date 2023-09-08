@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQuery FAQ</title>
+    <style>
+        p, dt {
+            font-weight: bold;
+        }
+
+        dl, dd {
+            font-size: 0.9rem;
+        }
+
+        dd {
+            margin-bottom: 1em;
+        }
+
+    </style>
+</head>
+<body>
+<p>10 Random National Park FAQs</p>
+
+<dl>
+    <dt>How many employees are in the National Park Service?</dt>
+    <dd class="invisible">Approximately 20,000 permanent, temporary, and seasonal employees along with more than 279,000
+        volunteers.
+    </dd>
+
+    <dt>How many people visit the national parks each year?</dt>
+    <dd class="invisible">Last year, there were 327 million national park visits in the United States.</dd>
+
+    <dt>Can I bring my service dog to a national park?</dt>
+    <dd class="invisible">Yes, service dogs are legally permitted anywhere in a park that visitors can go.</dd>
+
+    <dt>Can I bring my pet to a national park?</dt>
+    <dd class="invisible">Some national parks welcome pets—in developed areas, on many trails and campgrounds, and in
+        some lodging facilities.
+    </dd>
+
+    <dt>How many national parks are there in total in the United States?</dt>
+    <dd class="invisible">There are currently 63 national parks in the United States.</dd>
+
+    <dt>Which national parks have the most visitors?</dt>
+    <dd class="invisible">Popular national parks with the most overnight visitors are Grand Canyon, Yosemite &
+        Yellowstone. However, several national parks have are more popular for day visitors, making them feel more
+        private and secluded from sundown to sunrise.
+    </dd>
+
+    <dt>When were the national parks established and why?</dt>
+    <dd class="invisible">The National Park Service was established by Congress and initiated by President Theodore
+        Roosevelt during the year 1916. The goal was to give American people the opportunity to enjoy public lands and
+        make recreational activity more accessible to the public.
+    </dd>
+
+    <dt>Are national parks open all year round?</dt>
+    <dd class="invisible">It depends on the park. While most national parks are open year-round, there might be some
+        entrances that are closed due to weather or construction.
+    </dd>
+
+    <dt>How many areas are in the National Park System?</dt>
+    <dd class="invisible">The system includes 425 areas covering more than 85 million acres in every state, the District
+        of Columbia, American Samoa, Guam, Puerto Rico, and the Virgin Islands. These areas include national parks,
+        monuments, battlefields, military parks, historical parks, historic sites, lakeshores, seashores, recreation
+        areas, scenic rivers and trails, and the White House.
+    </dd>
+
+    <dt>What do I need to know about driving off road in national parks?</dt>
+    <dd class="invisible">Before you head out, check with the national parks that you intend to visit. In many national
+        parks, off-road driving is illegal. Where off-road driving is allowed, the National Park Service regulates it.
+    </dd>
+
+<!--    <dt>-->
+<!--        <a href="#" id="toggle-visibility">Toggle Visibility</a>-->
+<!--    </dt>-->
+</dl>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
+    "use strict";
+
+    $(document).ready(function () {
+        // function toggleVisibility() {
+        //     $("dd").toggleClass("invisible");
+        // }
+        //
+        // $("#toggle-visibility").click(function (e) {
+        //     e.preventDefault();
+        //     toggleVisibility();
+        // });
+
+        $("dt").click(function () {
+            $(this).css("background-color", "yellow")
+            let dd = $(this).next("dd");
+
+            if (dd.css("display") === "none") {
+                dd.css("display", "block");
+            } else {
+                dd.css("display", "none");
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
