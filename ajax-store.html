@@ -44,7 +44,7 @@
                       <td> ${data[i].title} </td>
                       <td> ${data[i].quantity} </td>
                       <td> ${data[i].price} </td>
-                      <td> ${data[i].categories}</td>
+                      <td> ${data[i].categories} </td>
                     </tr>`
                 }
                 $("#insertProducts").html(html);
@@ -57,7 +57,7 @@
 
         //-- Calling the function
         updateStore()
-        setInterval(updateStore, 6000);
+        // setInterval(updateStore, 6000);
         $("#refresh").on("click", updateStore)
 
 
