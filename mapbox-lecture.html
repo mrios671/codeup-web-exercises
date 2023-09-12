@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mapbox</title>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css' rel='stylesheet'/>
+    <style>
+        #map {
+            width: 100%;
+            height: 100vh;
+        }
+    </style>
+
+</head>
+<body>
+
+<div id='map'></div>
+
+<!--lets us access our token/key api-->
+<script src="js/keys.js"></script>
+<script>
+    mapboxgl.accessToken = mapboxApiToken;
+    const map = new mapboxgl.Map({
+        container: 'map', // container ID
+        style: 'mapbox://styles/mapbox/satellite-streets-v12', // style URL
+        center: [144.7937, 13.4443], // starting position [lng, lat]
+        zoom: 10, // starting zoom
+    });
+
+    let marker = new mapboxgl.Marker().setLngLat([-98.6089, 29.5994]).addTo(map)
+    let popup = new mapboxgl.Popup().setHTML("<p>Dr.Banh Mi</p>")
+    marker.setPopup(pop)
+</script>
+
+
+</body>
+</html>

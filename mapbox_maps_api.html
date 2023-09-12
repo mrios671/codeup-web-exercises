@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mapbox Exercises</title>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css' rel='stylesheet'/>
+    <style>
+        #map {
+            width: 100%;
+            height: 100vh;
+        }
+    </style>
+
+</head>
+<body>
+<div id="map"></div>
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js'></script>
+<script src="js/mapbox-geocoder-utils.js"></script>
+<script src="js/keys.js"></script>
+<script>
+
+    mapboxgl.accessToken = mapboxApiToken;
+    const map = new mapboxgl.Map({
+        container: 'map', // container ID
+        style: 'mapbox://styles/mapbox/satellite-streets-v12', // style URL
+        center: [-98.4946, 29.4252,], // starting position [lng, lat]
+        zoom: (10) // starting zoom
+    });
+
+    // let marker = new mapboxgl.Marker().setLngLat([-98.7175, 29.4337]).addTo(map)
+    // let popup = new mapboxgl.Popup().setHTML("<p>Dr.Banh Mi</p>")
+    // marker.setPopup(popup)
+
+    let objectArray = [
+        {address: "11330 Potranco Rd Unit 10", name: "<p>Dr. Banh Mi</p>"},
+        {address: "5700 Wurzbach Rd", name: "<p>Sari-Sari</p>"},
+        {address: "5638 W Hausman Rd", name: "<p>Sapporo sushi & Asian Fusion</p>"}
+    ]
+
+    function placeMarkerAndPopup(restaraunt, token, map) {
+        geocode(restaraunt.address, token).then(function (coordinates) {
+            let popup = new mapboxgl.Popup()
+                .setHTML("<h2>" + restaraunt.name + "</h2>"
+                    + "<p>"+ restaraunt.address +"</p>");
+            let marker = new mapboxgl.Marker()
+                .setLngLat(coordinates)
+                .addTo(map)
+                .setPopup(popup);
+            // popup.addTo(map);
+        })
+    }
+
+    objectArray.forEach(function (restaraunt) {
+        placeMarkerAndPopup(restaraunt, mapboxApiToken, map)
+    })
+
+</script>
+
+
+</body>
+</html>
