@@ -17,6 +17,7 @@ const FIVE_DAY_FORECAST_URL = `https://api.openweathermap.org/data/2.5/forecast?
 
 let long = ''
 let lat = ''
+
 $.get(FIVE_DAY_FORECAST_URL + `&q=San Antonio,TX,US`)
     .done((data) => {
         console.log(data)
@@ -34,10 +35,28 @@ $.get(FIVE_DAY_FORECAST_URL + `&q=San Antonio,TX,US`)
             center: [long, lat] // [lng, lat]
         });
 
+// This is a function to update weather information based on location
+        function updateWeatherInfoByLocation(location) {
+            $.get(OPEN_WEATHER_URL + `q=${location}&appid=${OPEN_WEATHER_API}&units=imperial`)
+                .done(function (data) {
+                    console.log(data);
+
+                    let html = `
+               <div>City searched: ${data.name}</div>
+                <div>Current Temp: ${data.main.temp.toFixed(0)}</div>
+                <div>Current Humidity: ${data.main.humidity}</div>
+                <div>Current Conditions: ${data.weather[0].description}</div>
+            `;
+
+                    console.log(html);
+
+                    $("#currentForecast").html(html);
+                });
+        }
+
         //Geocoder based on Search bar
         const customData = {
-            'features': [],
-            'type': 'FeatureCollection'
+            'features': [], 'type': 'FeatureCollection'
         };
 
         function forwardGeocoder(query) {
@@ -46,11 +65,9 @@ $.get(FIVE_DAY_FORECAST_URL + `&q=San Antonio,TX,US`)
             for (const feature of customData.features) {
                 // Handle queries with different capitalization
                 // than the source data by calling toLowerCase().
-                if (
-                    feature.properties.title
-                        .toLowerCase()
-                        .includes(query.toLowerCase())
-                ) {
+                if (feature.properties.title
+                    .toLowerCase()
+                    .includes(query.toLowerCase())) {
                     feature['place_name'] = `${feature.properties.title}`;
                     feature['center'] = feature.geometry.coordinates;
                     feature['place_type'] = ['park'];
@@ -61,49 +78,57 @@ $.get(FIVE_DAY_FORECAST_URL + `&q=San Antonio,TX,US`)
         }
 
 
-//creates a draggable marker on the map
-//         let marker = new mapboxgl.Marker({
-//             draggable: true
-//         })
-//             .setLngLat([long, lat])
-//             .addTo(map);
+// This is the SearchBox
+        const geocoder = new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            localGeocoder: forwardGeocoder,
+            zoom: 14,
+            placeholder: 'Search Map',
+            mapboxgl: mapboxgl,
+        });
 
-        map.on('click',function(){
+        geocoder.on('result', function (event) {
+            const location = event.result.text;
+            updateWeatherInfoByLocation(location);
+        });
+
+// Add the geocoder control to the map
+        map.addControl(geocoder);
+
+// ... Your existing code ...
+
+
+
+        // Create a function to grab and update weather information based on coordinates
+        function updateWeatherInfoByCoords(longitude, latitude) {
+            $.get(OPEN_WEATHER_URL + `lat=${latitude}&lon=${longitude}&appid=${OPEN_WEATHER_API}&units=imperial`)
+                .done(function (data) {
+                    console.log(data);
+
+                    let html = `
+               <div>City searched: ${data.name}</div>
+                <div>Current Temp: ${data.main.temp.toFixed(0)}</div>
+                <div>Current Humidity: ${data.main.humidity}</div>
+                <div>Current Conditions: ${data.weather[0].description}</div>
+            `;
+
+                    console.log(html);
+
+                    $("#currentForecast").html(html);
+                });
+        }
+
+        map.on('click', function () {
             let marker = new mapboxgl.Marker({
-                draggable:true
+                draggable: true
             })
                 .setLngLat([long, lat])
                 .addTo(map);
-
-        })
-// This is the SearchBox
-        map.addControl(
-            new MapboxGeocoder({
-                accessToken: mapboxgl.accessToken,
-                localGeocoder: forwardGeocoder,
-                zoom: 14,
-                placeholder: 'Search Map',
-                mapboxgl: mapboxgl,
-            })
-        );
-//  let geocoder = map.addControl(new MapboxGeocoder({
-//      accessToken: mapboxgl.accessToken,
-//                 localGeocoder: forwardGeocoder,
-//                 zoom: 14,
-//                 placeholder: 'Search Map',
-//                 mapboxgl: mapboxgl,
-//                 marker: false
-//  }))
-//
-//         geocoder.on('result', function(e){
-//             let marker= new mapboxgl.Marker({
-//                 draggable:true,
-//                 color: "pink"
-//             }) .setLngLat(e.result.center)
-//                 .addTo(map)
-//         })
-
-
+            marker.on('dragend', function () {
+                const newLngLat = marker.getLngLat();
+                updateWeatherInfoByCoords(newLngLat.lng, newLngLat.lat);
+            });
+        });
         //adds a zoom in and out button on the top right of the screen
         map.addControl(new mapboxgl.NavigationControl());
 
@@ -123,8 +148,8 @@ $.get(FIVE_DAY_FORECAST_URL + `&q=San Antonio,TX,US`)
 
                 $("#currentForecast").html(html);
             })
-                for (let i = 0; i <= data.list.length; i += 7) {
-                    html += `<div> 
+        for (let i = 0; i <= data.list.length; i += 7) {
+            html += `<div> 
                     <h2>Today's Temperature</h2>
                     <h3>${data.list[i].main.temp}&deg</h3>
 <!--                    <div>${data.list[i].main.icon}</div>-->
@@ -137,27 +162,27 @@ $.get(FIVE_DAY_FORECAST_URL + `&q=San Antonio,TX,US`)
         }
         //puts the new information into the browser
         $("#fiveDayForecast").html(html)
-    })
+
+        $("#button").on("click", function () {
+            console.log("hello")
+            geocode($("#mySearch").val(), mapboxApiToken).then(function (result) {
+
+                map.setCenter(result)
+
+                $.get(FIVE_DAY_FORECAST_URL + `&lat=${result[1]}&lon=${result[0]}`)
+                    .done((data) => {
+                        console.log(data)
+
+                        //assigning the lng and lat to a variable so I could call it in other areas
+                        long = `${data.city.coord.lon}`
+                        lat = `${data.city.coord.lat}`
 
 
-//If you want to add the icons the URLs for OpenWeatherMap's icons are formatted like: http://openweathermap.org/img/w/[icon].png where [icon] comes from the API response.
-$("#button").on("click", function () {
-    geocode($("#mySearch").val(), mapboxApiToken).then(function (result) {
+                        $.get(OPEN_WEATHER_URL + `lat=${result[1]}&lon=${result[0]}&appid=${OPEN_WEATHER_API}&units=imperial`)
+                            .done(function (data) {
+                                console.log(data);
 
-        $.get(FIVE_DAY_FORECAST_URL + `&lat=${result[1]}&lon=${result[0]}`)
-            .done((data) => {
-                console.log(data)
-
-                //assigning the lng and lat to a variable so I could call it in other areas
-                long = `${data.city.coord.lon}`
-                lat = `${data.city.coord.lat}`
-
-
-                $.get(OPEN_WEATHER_URL + `lat=${result[1]}&lon=${result[0]}&appid=${OPEN_WEATHER_API}&units=imperial`)
-                    .done(function (data) {
-                        console.log(data);
-
-                        let html = `
+                                let html = `
                <div>City searched: ${data.name}</div>
                 <div>Current Temp: ${data.main.temp.toFixed(0)}</div>
                 <div>Current Humidity: ${data.main.humidity}</div>
@@ -165,15 +190,15 @@ $("#button").on("click", function () {
                 `
 
 
-                        console.log(html);
+                                console.log(html);
 
-                        $("#currentForecast").html(html);
+                                $("#currentForecast").html(html);
 
 
-                    })
-                let html=''
-                for (let i = 0; i <= data.list.length; i += 7) {
-                    html += `<div>
+                            })
+                        let html = ''
+                        for (let i = 0; i <= data.list.length; i += 7) {
+                            html += `<div>
                     <h2>Today's Temperature</h2>
                     <h3>${data.list[i].main.temp}&deg</h3>
 <!--                    <div>${data.list[i].main.icon}</div>-->
@@ -182,11 +207,17 @@ $("#button").on("click", function () {
                     <div>Humidity: ${data.list[i].main.humidity}</div>
                     <div>Wind: ${data.list[i].wind.speed.toFixed(0)} mph</div>
                     </div>`;
-                    console.log(html)
-                }
-                $("#fiveDayForecast").html(html)
+                            console.log(html)
+                        }
+                        $("#fiveDayForecast").html(html)
+                    })
+
             })
+        })
+
 
     })
-})
+
+
+//If you want to add the icons the URLs for OpenWeatherMap's icons are formatted like: http://openweathermap.org/img/w/[icon].png where [icon] comes from the API response.
 
