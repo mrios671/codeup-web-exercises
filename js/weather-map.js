@@ -12,23 +12,11 @@
 
 //CURRENT WEATHER
 const OPEN_WEATHER_URL = `https://api.openweathermap.org/data/2.5/weather?`
-// show the current conditions of San Antonio
-console.log(OPEN_WEATHER_URL + `lat=${21.280693}&lon=${-157.834549}&appid=${OPEN_WEATHER_API}`);
-
-//when the user types in a location, when they click search, run the current weather get function to match the location that was searched
-//where am I sending the values
-// $("#mySearch").val()
-
 //FIVE DAY API
-
 const FIVE_DAY_FORECAST_URL = `https://api.openweathermap.org/data/2.5/forecast?&units=imperial&appid=${OPEN_WEATHER_API}`
-
-
-console.log(FIVE_DAY_FORECAST_URL + `&q=San Antonio,TX,USA`);
 
 let long = ''
 let lat = ''
-//omg loops- five days forecast
 $.get(FIVE_DAY_FORECAST_URL + `&q=San Antonio,TX,US`)
     .done((data) => {
         console.log(data)
@@ -74,13 +62,20 @@ $.get(FIVE_DAY_FORECAST_URL + `&q=San Antonio,TX,US`)
 
 
 //creates a draggable marker on the map
-        let marker = new mapboxgl.Marker({
-            draggable: true
+//         let marker = new mapboxgl.Marker({
+//             draggable: true
+//         })
+//             .setLngLat([long, lat])
+//             .addTo(map);
+
+        map.on('click',function(){
+            let marker = new mapboxgl.Marker({
+                draggable:true
+            })
+                .setLngLat([long, lat])
+                .addTo(map);
+
         })
-            .setLngLat([long, lat])
-            .addTo(map);
-
-
 // This is the SearchBox
         map.addControl(
             new MapboxGeocoder({
@@ -148,25 +143,37 @@ $.get(FIVE_DAY_FORECAST_URL + `&q=San Antonio,TX,US`)
 //If you want to add the icons the URLs for OpenWeatherMap's icons are formatted like: http://openweathermap.org/img/w/[icon].png where [icon] comes from the API response.
 $("#button").on("click", function () {
     geocode($("#mySearch").val(), mapboxApiToken).then(function (result) {
-        console.log(result);
 
-        $.get(OPEN_WEATHER_URL + `lat=${result[1]}&lon=${result[0]}&appid=${OPEN_WEATHER_API}&units=imperial`)
-            .done(function (data) {
-                console.log(data);
+        $.get(FIVE_DAY_FORECAST_URL + `&lat=${result[1]}&lon=${result[0]}`)
+            .done((data) => {
+                console.log(data)
 
-                let html = `
+                //assigning the lng and lat to a variable so I could call it in other areas
+                long = `${data.city.coord.lon}`
+                lat = `${data.city.coord.lat}`
+
+
+                $.get(OPEN_WEATHER_URL + `lat=${result[1]}&lon=${result[0]}&appid=${OPEN_WEATHER_API}&units=imperial`)
+                    .done(function (data) {
+                        console.log(data);
+
+                        let html = `
                <div>City searched: ${data.name}</div>
                 <div>Current Temp: ${data.main.temp.toFixed(0)}</div>
                 <div>Current Humidity: ${data.main.humidity}</div>
                 <div>Current Conditions: ${data.weather[0].description}</div>
                 `
-                console.log(html);
 
-                $("#currentForecast").html(html);
-            })
 
-        for (let i = 0; i <= data.list.length; i += 7) {
-            let html = `<div>
+                        console.log(html);
+
+                        $("#currentForecast").html(html);
+
+
+                    })
+                let html=''
+                for (let i = 0; i <= data.list.length; i += 7) {
+                    html += `<div>
                     <h2>Today's Temperature</h2>
                     <h3>${data.list[i].main.temp}&deg</h3>
 <!--                    <div>${data.list[i].main.icon}</div>-->
@@ -175,11 +182,11 @@ $("#button").on("click", function () {
                     <div>Humidity: ${data.list[i].main.humidity}</div>
                     <div>Wind: ${data.list[i].wind.speed.toFixed(0)} mph</div>
                     </div>`;
-            console.log(html)
-        }
-        //puts the new information into the browser
-        $("#fiveDayForecast").html(html)
-    })
+                    console.log(html)
+                }
+                $("#fiveDayForecast").html(html)
+            })
 
+    })
 })
 
