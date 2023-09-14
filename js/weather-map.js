@@ -40,9 +40,12 @@ function markerOne () {
             console.log(`~~~~~~~`);
             console.log(newLngLat);
             updateWeatherByCoords(newLngLat.lng, newLngLat.lat);
+            updateForecastByCoords(newLngLat.lng, newLngLat.lat);
         });
     });
 }
+markerOne();
+map.addControl(new mapboxgl.NavigationControl());
 
 // This is a function to update weather information based on location
 function updateWeatherInfoByLocation(location) {
@@ -82,7 +85,26 @@ function updateWeatherByCoords(longitude, latitude) {
         });
 }
 
-markerOne();
+function updateForecastByCoords(longitude, latitude) {
+    $.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=imperial&appid=${OPEN_WEATHER_API}`)
+        .done(function (data) {
+            console.log('Update forecast by coords =>', data);
+            let html = '';
+            //loop that displays the five day forecast for San Antonio on page load
+            for (let i = 0; i <= data.list.length; i += 7) {
+                html += `<div>
+                        <h2>Today's Temperature</h2>
+                        <h3>${data.list[i].main.temp}&deg</h3>
+                        <div>${data.list[i].main.temp_max}&deg F/${data.list[i].main.temp_min}&deg F</div>
+                        <div>${data.list[i].weather[0].description}</div>
+                        <div>Humidity: ${data.list[i].main.humidity}</div>
+                        <div>Wind: ${data.list[i].wind.speed.toFixed(0)} mph</div>
+                        </div>`;
+                console.log(html)
+            }
+            $("#fiveDayForecast").html(html)
+        })
+}
 
 const customData = {
     'features': [], 'type': 'FeatureCollection'
@@ -106,11 +128,11 @@ function forwardGeocoder(query) {
     }
     return matchingFeatures;
 }
-map.addControl(new mapboxgl.NavigationControl());
 
 $.get(OPEN_WEATHER_URL + `q=San Antonio,TX,US&appid=${OPEN_WEATHER_API}&units=imperial`)
     .done(function (data) {
         console.log(data);
+
 
         let html = `
                <div>City searched: ${data.name}</div>
@@ -141,7 +163,6 @@ $.get(FIVE_DAY_FORECAST_URL + `&q=San Antonio,TX,US`)
             html += `<div> 
                         <h2>Today's Temperature</h2>
                         <h3>${data.list[i].main.temp}&deg</h3>
-    <!--                    <div>${data.list[i].main.icon}</div>-->
                         <div>${data.list[i].main.temp_max}&deg F/${data.list[i].main.temp_min}&deg F</div>
                         <div>${data.list[i].weather[0].description}</div>
                         <div>Humidity: ${data.list[i].main.humidity}</div>
@@ -167,47 +188,29 @@ $.get(FIVE_DAY_FORECAST_URL + `&q=San Antonio,TX,US`)
 
                 marker.setLngLat(result)
 
-                // This is a function to update weather information based on location
-                updateWeatherInfoByLocation(forwardGeocoder)
+                updateWeatherInfoByLocation(location)
 
-                //Geocoder based on Search bar
-                const customData = {
-                    'features': [], 'type': 'FeatureCollection'
-                };
-                // function that grabs and updates the weather information based on coordinates
-                function updateWeatherByCoords(longitude, latitude) {
-                    $.get(OPEN_WEATHER_URL + `lat=${latitude}&lon=${longitude}&appid=${OPEN_WEATHER_API}&units=imperial`)
-                        .done(function (data) {
-                            console.log(data);
+                updateWeatherByCoords(long, lat)
 
-                            let html = `
-               <div>City searched: ${data.name}</div>
-                <div>Current Temp: ${data.main.temp.toFixed(0)}</div>
-                <div>Current Humidity: ${data.main.humidity}</div>
-                <div>Current Conditions: ${data.weather[0].description}</div>
-            `;
 
-                            console.log(html);
 
-                            $("#currentForecast").html(html);
-                        });
-                }
-                //makes the marker draggable, runs the updateWeatherByCoords, and
-                map.on('load', function () {
-                    // let marker = new mapboxgl.Marker({
-                    //     draggable: true
-                    // })
-                    marker
-                        .setLngLat([long, lat])
-                        .addTo(map);
-                    marker.on('dragend', function () {
-                        const newLngLat = marker.getLngLat();
-                        updateWeatherByCoords(newLngLat.lng, newLngLat.lat);
-                    });
-                });
-
+                forwardGeocoder()
                 //declared an empty html string so I can add content and call it again with the added info outside of the loop
                 let html = ''
+                $.get(OPEN_WEATHER_URL + `lat=${result[1]}&lon=${result[0]}&appid=${OPEN_WEATHER_API}&units=imperial`)
+                    .done(function (data) {
+                        console.log(data);
+
+                        html = `
+                        <div>City searched: ${data.name}</div>
+                        <div>Current Temp: ${data.main.temp.toFixed(0)}</div>
+                        <div>Current Humidity: ${data.main.humidity}</div>
+                        <div>Current Conditions: ${data.weather[0].description}</div>
+                                     `
+                        console.log(html);
+
+                        $("#currentForecast").html(html);
+                    })
 
                 $.get(FIVE_DAY_FORECAST_URL + `&lat=${result[1]}&lon=${result[0]}`)
                     .done((data) => {
@@ -217,21 +220,6 @@ $.get(FIVE_DAY_FORECAST_URL + `&q=San Antonio,TX,US`)
                         long = `${data.city.coord.lon}`
                         lat = `${data.city.coord.lat}`
 
-
-                        $.get(OPEN_WEATHER_URL + `lat=${result[1]}&lon=${result[0]}&appid=${OPEN_WEATHER_API}&units=imperial`)
-                            .done(function (data) {
-                                console.log(data);
-
-                                let html = `
-                                    <div>City searched: ${data.name}</div>
-                                    <div>Current Temp: ${data.main.temp.toFixed(0)}</div>
-                                    <div>Current Humidity: ${data.main.humidity}</div>
-                                    <div>Current Conditions: ${data.weather[0].description}</div>
-                                     `
-                                console.log(html);
-
-                                $("#currentForecast").html(html);
-                            })
                         let html = ''
                         for (let i = 0; i <= data.list.length; i += 7) {
                             html += `<div>
