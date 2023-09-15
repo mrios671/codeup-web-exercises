@@ -15,6 +15,9 @@ const OPEN_WEATHER_URL = `https://api.openweathermap.org/data/2.5/weather?`
 //FIVE DAY API
 const FIVE_DAY_FORECAST_URL = `https://api.openweathermap.org/data/2.5/forecast?&units=imperial&appid=${OPEN_WEATHER_API}`
 
+const OPEN_WEATHER_ICON_URL = 'http://openweathermap.org/img/w/';
+
+
 let long = ''
 let lat = ''
 let marker = new mapboxgl.Marker({
@@ -54,10 +57,14 @@ function updateWeatherInfoByLocation(location) {
             console.log(data);
 
             let html = `
-               <div>City searched: ${data.name}</div>
-                <div>Current Temp: ${data.main.temp.toFixed(0)}</div>
-                <div>Current Humidity: ${data.main.humidity}</div>
-                <div>Current Conditions: ${data.weather[0].description}</div>
+                <div class="card">
+                <div class="card-body current-card">
+               <h1>${data.name}</h1>
+                <div>${data.main.temp.toFixed(0)}&deg</div>
+                <div>Humidity: ${data.main.humidity}</div>
+                <div>${data.weather[0].description}</div>
+                </div>
+                </div>
             `;
 
             console.log(html);
@@ -73,10 +80,14 @@ function updateWeatherByCoords(longitude, latitude) {
             console.log(data);
 
             let html = `
-               <div>City searched: ${data.name}</div>
-                <div>Current Temp: ${data.main.temp.toFixed(0)}</div>
-                <div>Current Humidity: ${data.main.humidity}</div>
-                <div>Current Conditions: ${data.weather[0].description}</div>
+                <div class="card">
+                <div class="card-body current-card">
+               <h1>${data.name}</h1>
+                <div>${data.main.temp.toFixed(0)}&deg</div>
+                <div>Humidity: ${data.main.humidity}</div>
+                <div>${data.weather[0].description}</div>
+                </div>
+                </div>
             `;
 
             console.log(html);
@@ -91,15 +102,27 @@ function updateForecastByCoords(longitude, latitude) {
             console.log('Update forecast by coords =>', data);
             let html = '';
             //loop that displays the five day forecast for San Antonio on page load
-            for (let i = 0; i <= data.list.length; i += 7) {
-                html += `<div>
-                        <h2>Today's Temperature</h2>
-                        <h3>${data.list[i].main.temp}&deg</h3>
-                        <div>${data.list[i].main.temp_max}&deg F/${data.list[i].main.temp_min}&deg F</div>
-                        <div>${data.list[i].weather[0].description}</div>
-                        <div>Humidity: ${data.list[i].main.humidity}</div>
-                        <div>Wind: ${data.list[i].wind.speed.toFixed(0)} mph</div>
-                        </div>`;
+            for (let i = 0; i <= data.list.length; i += 9) {
+                const forecast = data.list[i];
+                const iconUrl = OPEN_WEATHER_ICON_URL + forecast.weather[0].icon + '.png';
+                html += `<div> 
+                        <div class="card">
+                            <div class="card-body d-flex gap-5">
+                                <div>
+                                    <h2>${epochConverter(data.list[i].dt)}</h2>
+                                    <h3>${data.list[i].main.temp.toFixed(0)}&degF</h3>
+                                </div>
+                                <div>
+                                    <img src="${iconUrl}" alt="${forecast.weather[0].description}"/>
+                                    <div>${data.list[i].weather[0].description}</div>
+                                </div>
+                                <div> 
+                                    <div>Humidity: ${data.list[i].main.humidity}</div>
+                                    <div>Wind: ${data.list[i].wind.speed.toFixed(0)} mph</div>
+                                </div>
+                            </div>
+                        </div>
+                     </div>`;
                 console.log(html)
             }
             $("#fiveDayForecast").html(html)
@@ -129,16 +152,25 @@ function forwardGeocoder(query) {
     return matchingFeatures;
 }
 
+// function for converting the date in the objects
+const epochConverter = (epoch)=>{
+    return  new Date(epoch * 1000).toString().substring(4, 15)
+}
+
 $.get(OPEN_WEATHER_URL + `q=San Antonio,TX,US&appid=${OPEN_WEATHER_API}&units=imperial`)
     .done(function (data) {
         console.log(data);
 
 
         let html = `
-               <div>City searched: ${data.name}</div>
-                <div>Current Temp: ${data.main.temp.toFixed(0)}</div>
-                <div>Current Humidity: ${data.main.humidity}</div>
-                <div>Current Conditions: ${data.weather[0].description}</div>
+                <div class="card">
+                <div class="card-body current-card">
+               <h1>${data.name}</h1>
+                <h3>${data.main.temp.toFixed(0)}&deg</h3>
+                <div>Humidity: ${data.main.humidity}</div>
+                <div>${data.weather[0].description}</div>
+                </div>
+                </div>
                 `
         console.log(html);
         // puts this into the browser
@@ -159,15 +191,28 @@ $.get(FIVE_DAY_FORECAST_URL + `&q=San Antonio,TX,US`)
 
         let html = '';
         //loop that displays the five day forecast for San Antonio on page load
-        for (let i = 0; i <= data.list.length; i += 7) {
-            html += `<div> 
-                        <h2>Today's Temperature</h2>
-                        <h3>${data.list[i].main.temp}&deg</h3>
-                        <div>${data.list[i].main.temp_max}&deg F/${data.list[i].main.temp_min}&deg F</div>
-                        <div>${data.list[i].weather[0].description}</div>
-                        <div>Humidity: ${data.list[i].main.humidity}</div>
-                        <div>Wind: ${data.list[i].wind.speed.toFixed(0)} mph</div>
-                        </div>`;
+        for (let i = 0; i <= data.list.length; i += 9) {
+            const forecast = data.list[i];
+            const iconUrl = OPEN_WEATHER_ICON_URL + forecast.weather[0].icon + '.png';
+            html +=
+            `<div> 
+                 <div class="card">
+                     <div class="card-body d-flex gap-5">
+                         <div>
+                            <h2>${epochConverter(data.list[i].dt)}</h2>
+                            <h3>${data.list[i].main.temp.toFixed(0)}&degF</h3>
+                         </div>
+                         <div>
+                             <img src="${iconUrl}" alt="${forecast.weather[0].description}"/>
+                             <div>${data.list[i].weather[0].description}</div>
+                         </div>
+                         <div> 
+                              <div>Humidity: ${data.list[i].main.humidity}</div>
+                              <div>Wind: ${data.list[i].wind.speed.toFixed(0)} mph</div>
+                         </div>
+                     </div>
+                 </div>
+            </div>`;
             console.log(html)
         }
         $("#fiveDayForecast").html(html)
@@ -192,20 +237,21 @@ $.get(FIVE_DAY_FORECAST_URL + `&q=San Antonio,TX,US`)
 
                 updateWeatherByCoords(long, lat)
 
-
-
                 forwardGeocoder()
-                //declared an empty html string so I can add content and call it again with the added info outside of the loop
                 let html = ''
                 $.get(OPEN_WEATHER_URL + `lat=${result[1]}&lon=${result[0]}&appid=${OPEN_WEATHER_API}&units=imperial`)
                     .done(function (data) {
                         console.log(data);
 
                         html = `
-                        <div>City searched: ${data.name}</div>
-                        <div>Current Temp: ${data.main.temp.toFixed(0)}</div>
-                        <div>Current Humidity: ${data.main.humidity}</div>
-                        <div>Current Conditions: ${data.weather[0].description}</div>
+                        <div class="card">
+                <div class="card-body current-card">
+               <h1>${data.name}</h1>
+                <div>${data.main.temp.toFixed(0)}&deg</div>
+                <div>Humidity: ${data.main.humidity}</div>
+                <div>${data.weather[0].description}</div>
+                </div>
+                </div>
                                      `
                         console.log(html);
 
@@ -221,16 +267,27 @@ $.get(FIVE_DAY_FORECAST_URL + `&q=San Antonio,TX,US`)
                         lat = `${data.city.coord.lat}`
 
                         let html = ''
-                        for (let i = 0; i <= data.list.length; i += 7) {
-                            html += `<div>
-                                        <h2>Today's Temperature</h2>
-                                        <h3>${data.list[i].main.temp}&deg</h3>
-<!--                                    <div>${data.list[i].main.icon}</div>-->
-                                        <div>${data.list[i].main.temp_max}&deg F/${data.list[i].main.temp_min}&deg F</div>
-                                        <div>${data.list[i].weather[0].description}</div>
-                                        <div>Humidity: ${data.list[i].main.humidity}</div>
-                                        <div>Wind: ${data.list[i].wind.speed.toFixed(0)} mph</div>
-                                        </div>`;
+                        for (let i = 0; i <= data.list.length; i += 9) {
+                            const forecast = data.list[i];
+                            const iconUrl = OPEN_WEATHER_ICON_URL + forecast.weather[0].icon + '.png';
+                            html += `<div> 
+                                <div class="card">
+                                    <div class="card-body d-flex gap-5">
+                                        <div>
+                                            <h2>${epochConverter(data.list[i].dt)}</h2>
+                                            <h3>${data.list[i].main.temp.toFixed(0)}&degF</h3>
+                                        </div>
+                                        <div>
+                                            <img src="${iconUrl}" alt="${forecast.weather[0].description}"/>
+                                            <div>${data.list[i].weather[0].description}</div>
+                                        </div>
+                                        <div> 
+                                            <div>Humidity: ${data.list[i].main.humidity}</div>
+                                            <div>Wind: ${data.list[i].wind.speed.toFixed(0)} mph</div>
+                                        </div>
+                                    </div>
+                                </div>
+                             </div>`;
                             console.log(html)
                         }
                         $("#fiveDayForecast").html(html)
