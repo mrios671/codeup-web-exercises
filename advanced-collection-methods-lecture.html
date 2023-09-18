@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Advanced Collection Methods</title>
+</head>
+<body>
+
+<h1>Hello - how about some advanced collection methods?</h1>
+
+<script>
+    let ourPets = [
+        {
+            species: "Cat",
+            name: "Sassy",
+            primaryColor: "gray",
+            age: 5,
+            knowsTricks: false
+        },
+        {
+            species: "Dog",
+            name: "Lindsey",
+            primaryColor: "yellow",
+            age: 5,
+            knowsTricks: true
+        },
+        {
+            species: "Dog",
+            name: "Luna",
+            primaryColor: "gray",
+            age: 1,
+            knowsTricks: true
+        },
+        {
+            species: "Cat",
+            name: "Cali",
+            primaryColor: "gray,brown,white",
+            age: 5,
+            knowsTricks: false
+        },
+        {
+            species: "Bird",
+            name: "Tobi",
+            primaryColor: "green,black",
+            age: 1.5,
+            knowsTricks: true
+        },
+        {
+            species: "Cat",
+            name: "Pinch 'o Pepper",
+            primaryColor: "Black",
+            age: 2,
+            knowsTricks: true
+        }
+    ]
+
+    //        .filter()
+    // Let's get cats only!
+
+    let catsOnlyArray= ourPets.filter((pet)=>{
+        return pet.species === "Cat";
+    })
+    console.log(catsOnlyArray);
+    //how can we get ages less than five?
+    let petsUnderFive= ourPets.filter((pet)=>{
+        return pet.age < 5;
+    })
+    console.log(petsUnderFive);
+
+    //    .map()
+    //Let's get an array of the cat ages with the human years math done! Some sources say multiplying by seven will get us the human age
+
+    let catsHumanAge = catsOnlyArray.map((cat)=>{
+        return cat.age * 7;
+    })
+    console.log(catsHumanAge);
+
+    //        .reduce()
+    // Can we use .reduce() to quickly sum up our pet's ages?
+
+    let totalPetAge= ourPets.reduce((total, pet)=>{
+        return total + pet.age;
+    }, 0)
+    console.log(totalPetAge);
+
+    // Bonus:
+    // .some()
+
+    console.log(`Do any of us own an alligator?`);
+
+    console.log(`Do any of us own a cat?`);
+
+    console.log(`Do any of us own a pet named 'Gilly'?`);
+
+    console.log(`Do any of us own a pet named 'Sassy'`);
+
+
+
+    //.find()
+    //Let's find a pet - where's my cat, Pinch?!
+
+   let pinchTheCat = "";
+
+    console.log(`Did we find Pinch?`);
+    console.log( ` %c／l、
+（ﾟ､ ｡７ <<(mrow)
+ l、ﾞ~ヽ
+ じしf_,)ノ `, "color:#404040");
+
+
+
+</script>
+
+</body>
+</html>

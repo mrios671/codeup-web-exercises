@@ -122,7 +122,7 @@ function updateWeatherInfoByLocation(location) {
                 <div class="card">
                     <div class="card-body current-card">
                        <h1>${data.name}</h1>
-                       <div>${data.main.temp.toFixed(0)}&deg</div>
+                       <h3>${data.main.temp.toFixed(0)}&deg</h3>
                        <div>Humidity: ${data.main.humidity}</div>
                        <div>${data.weather[0].description}</div>
                     </div>
@@ -145,8 +145,8 @@ function updateWeatherByCoords(longitude, latitude) {
                 <div class="card">
                     <div class="card-body current-card">
                        <h1>${data.name}</h1>
-                       <div>${data.main.temp.toFixed(0)}&deg</div>
-                        div>Humidity: ${data.main.humidity}</div>
+                       <h3>${data.main.temp.toFixed(0)}&deg</h3>
+                        <div>Humidity: ${data.main.humidity}</div>
                        <div>${data.weather[0].description}</div>
                     </div>
                 </div>
