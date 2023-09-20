@@ -1,3 +1,4 @@
+import keys from "./keys.js";
 "use strict";
 
 /*TODO
@@ -13,7 +14,7 @@
 //CURRENT WEATHER
 const OPEN_WEATHER_URL = `https://api.openweathermap.org/data/2.5/weather?`
 //FIVE DAY API
-const FIVE_DAY_FORECAST_URL = `https://api.openweathermap.org/data/2.5/forecast?&units=imperial&appid=${OPEN_WEATHER_API}`
+const FIVE_DAY_FORECAST_URL = `https://api.openweathermap.org/data/2.5/forecast?&units=imperial&appid=${keys.OPEN_WEATHER_API}`
 
 const OPEN_WEATHER_ICON_URL = 'http://openweathermap.org/img/w/';
 
@@ -25,7 +26,7 @@ let marker = new mapboxgl.Marker({
 })
 
 //inserts the map into the DOM
-mapboxgl.accessToken = mapboxApiToken;
+mapboxgl.accessToken = keys.mapboxApiToken;
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
@@ -51,14 +52,14 @@ markerOne();
 map.addControl(new mapboxgl.NavigationControl());
 
 //get request that displays the current weather with the starting point of San Antonio on page load
-$.get(OPEN_WEATHER_URL + `q=San Antonio,TX,US&appid=${OPEN_WEATHER_API}&units=imperial`)
+$.get(OPEN_WEATHER_URL + `q=San Antonio,TX,US&appid=${keys.OPEN_WEATHER_API}&units=imperial`)
     .done(function (data) {
         console.log(data);
         let html = `
                 <div class="card">
                     <div class="card-body current-card">
                        <h1>${data.name}</h1>
-                       <h3>${data.main.temp.toFixed(0)}&deg</h3>
+                       <h3>${data.main.temp.toFixed(0)}&deg F</h3>
                        <div>Humidity: ${data.main.humidity}</div>
                        <div>${data.weather[0].description}</div>
                     </div>
@@ -93,7 +94,7 @@ $.get(FIVE_DAY_FORECAST_URL + `&q=San Antonio,TX,US`)
                      <div class="card-body d-flex gap-5">
                          <div>
                             <h2>${epochConverter(data.list[i].dt)}</h2>
-                            <h3>${data.list[i].main.temp.toFixed(0)}&degF</h3>
+                            <h3>${data.list[i].main.temp.toFixed(0)}&deg F</h3>
                          </div>
                          <div>
                              <img src="${iconUrl}" alt="${forecast.weather[0].description}"/>
@@ -114,7 +115,7 @@ $.get(FIVE_DAY_FORECAST_URL + `&q=San Antonio,TX,US`)
 
 // Function that updates the weather information based on location
 function updateWeatherInfoByLocation(location) {
-    $.get(OPEN_WEATHER_URL + `q=${location}&appid=${OPEN_WEATHER_API}&units=imperial`)
+    $.get(OPEN_WEATHER_URL + `q=${location}&appid=${keys.OPEN_WEATHER_API}&units=imperial`)
         .done(function (data) {
             console.log(data);
 
@@ -122,7 +123,7 @@ function updateWeatherInfoByLocation(location) {
                 <div class="card">
                     <div class="card-body current-card">
                        <h1>${data.name}</h1>
-                       <h3>${data.main.temp.toFixed(0)}&deg</h3>
+                       <h3>${data.main.temp.toFixed(0)}&deg F</h3>
                        <div>Humidity: ${data.main.humidity}</div>
                        <div>${data.weather[0].description}</div>
                     </div>
@@ -137,7 +138,7 @@ function updateWeatherInfoByLocation(location) {
 
 // function that grabs and updates the weather information based on coordinates
 function updateWeatherByCoords(longitude, latitude) {
-    $.get(OPEN_WEATHER_URL + `lat=${latitude}&lon=${longitude}&appid=${OPEN_WEATHER_API}&units=imperial`)
+    $.get(OPEN_WEATHER_URL + `lat=${latitude}&lon=${longitude}&appid=${keys.OPEN_WEATHER_API}&units=imperial`)
         .done(function (data) {
             console.log(data);
 
@@ -145,7 +146,7 @@ function updateWeatherByCoords(longitude, latitude) {
                 <div class="card">
                     <div class="card-body current-card">
                        <h1>${data.name}</h1>
-                       <h3>${data.main.temp.toFixed(0)}&deg</h3>
+                       <h3>${data.main.temp.toFixed(0)}&deg F</h3>
                         <div>Humidity: ${data.main.humidity}</div>
                        <div>${data.weather[0].description}</div>
                     </div>
@@ -160,7 +161,7 @@ function updateWeatherByCoords(longitude, latitude) {
 
 //function that updates five-day forecast by coords
 function updateForecastByCoords(longitude, latitude) {
-    $.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=imperial&appid=${OPEN_WEATHER_API}`)
+    $.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=imperial&appid=${keys.OPEN_WEATHER_API}`)
         .done(function (data) {
             console.log('Update forecast by coords =>', data);
             let html = '';
@@ -174,7 +175,7 @@ function updateForecastByCoords(longitude, latitude) {
                             <div class="card-body d-flex gap-5">
                                 <div>
                                     <h2>${epochConverter(data.list[i].dt)}</h2>
-                                    <h3>${data.list[i].main.temp.toFixed(0)}&degF</h3>
+                                    <h3>${data.list[i].main.temp.toFixed(0)}&deg F</h3>
                                 </div>
                                 <div>
                                     <img src="${iconUrl}" alt="${forecast.weather[0].description}"/>
@@ -226,7 +227,7 @@ const epochConverter = (epoch)=>{
         $("#button").on("click", function () {
 
             //runs what location is put into the search bar with the geocode to match it when button is clicked
-            geocode($("#mySearch").val(), mapboxApiToken).then(function (result) {
+            geocode($("#mySearch").val(), keys.mapboxApiToken).then(function (result) {
                 //takes you to the location that was input into the searchbar
                 map.flyTo({
                     center: result,
@@ -241,7 +242,7 @@ const epochConverter = (epoch)=>{
 
                 forwardGeocoder()
                 let html = ''
-                $.get(OPEN_WEATHER_URL + `lat=${result[1]}&lon=${result[0]}&appid=${OPEN_WEATHER_API}&units=imperial`)
+                $.get(OPEN_WEATHER_URL + `lat=${result[1]}&lon=${result[0]}&appid=${keys.OPEN_WEATHER_API}&units=imperial`)
                     .done(function (data) {
                         console.log(data);
 
@@ -249,7 +250,7 @@ const epochConverter = (epoch)=>{
                         <div class="card">
                             <div class="card-body current-card">
                                 <h1>${data.name}</h1>
-                                <div>${data.main.temp.toFixed(0)}&deg</div>
+                                <h3>${data.main.temp.toFixed(0)}&deg F</h3>
                                 <div>Humidity: ${data.main.humidity}</div>
                                 <div>${data.weather[0].description}</div>
                             </div>
@@ -278,7 +279,7 @@ const epochConverter = (epoch)=>{
                                         <div class="card-body d-flex gap-5">
                                             <div>
                                                 <h2>${epochConverter(data.list[i].dt)}</h2>
-                                                <h3>${data.list[i].main.temp.toFixed(0)}&degF</h3>
+                                                <h3>${data.list[i].main.temp.toFixed(0)}&deg F</h3>
                                             </div>
                                             <div>
                                                 <img src="${iconUrl}" alt="${forecast.weather[0].description}"/>
